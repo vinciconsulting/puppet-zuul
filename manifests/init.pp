@@ -370,55 +370,55 @@ class zuul (
     }
   }
 
-  apache::vhost { $vhost_name:
-    port       => 443, # Is required despite not being used.
-    docroot    => 'MEANINGLESS ARGUMENT',
-    priority   => '50',
-    ssl        => $ssl,
-    template   => 'zuul/zuul.vhost.erb',
-    vhost_name => $vhost_name,
-  }
-  if ! defined(A2mod['rewrite']) {
-    a2mod { 'rewrite':
-      ensure => present,
-    }
-  }
-  if ! defined(A2mod['proxy']) {
-    a2mod { 'proxy':
-      ensure => present,
-    }
-  }
-  if ! defined(A2mod['proxy_http']) {
-    a2mod { 'proxy_http':
-      ensure => present,
-    }
-  }
-  if ! defined(A2mod['cache']) {
-    a2mod { 'cache':
-      ensure => present,
-    }
-  }
-  if ! defined(A2mod['cgi']) {
-    a2mod { 'cgi':
-      ensure => present,
-    }
-  }
+#  apache::vhost { $vhost_name:
+#    port       => 443, # Is required despite not being used.
+#    docroot    => 'MEANINGLESS ARGUMENT',
+#    priority   => '50',
+#    ssl        => $ssl,
+#    template   => 'zuul/zuul.vhost.erb',
+#    vhost_name => $vhost_name,
+#  }
+#  if ! defined(A2mod['rewrite']) {
+#    a2mod { 'rewrite':
+#      ensure => present,
+#    }
+#  }
+#  if ! defined(A2mod['proxy']) {
+#    a2mod { 'proxy':
+#      ensure => present,
+#    }
+#  }
+#  if ! defined(A2mod['proxy_http']) {
+#    a2mod { 'proxy_http':
+#      ensure => present,
+#    }
+#  }
+#  if ! defined(A2mod['cache']) {
+#    a2mod { 'cache':
+#      ensure => present,
+#    }
+#  }
+#  if ! defined(A2mod['cgi']) {
+#    a2mod { 'cgi':
+#      ensure => present,
+#    }
+#  }
 
-  case $::lsbdistcodename {
-    'precise': {
-      if ! defined(A2mod['mem_cache']) {
-        a2mod { 'mem_cache':
-          ensure => present,
-        }
-      }
-    }
-    default: {
-      if ! defined(A2mod['cache_disk']) {
-        a2mod { 'cache_disk':
-          ensure => present,
-        }
-      }
-    }
-  }
+#  case $::lsbdistcodename {
+#    'precise': {
+#      if ! defined(A2mod['mem_cache']) {
+#        a2mod { 'mem_cache':
+#          ensure => present,
+#        }
+#      }
+#    }
+#    default: {
+#      if ! defined(A2mod['cache_disk']) {
+#        a2mod { 'cache_disk':
+#          ensure => present,
+#        }
+#      }
+#    }
+#  }
 
 }
